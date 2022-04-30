@@ -1,0 +1,34 @@
+batch_size: 32
+# gradient_accumulations: 16
+epochs: 5
+eval_every_n_epochs: 1
+fine_tune_from: ''
+log_every_n_steps: 25
+learning_rate: 0.00001
+weight_decay: 1e-7
+warmup_epochs: 5
+fp16_precision: True
+n_gpu: 1
+
+moco_dim: 256
+moco_mlp_dim: 4096
+moco_m: 0.99
+moco_t: 1.0
+moco_m_cos: True
+
+stop_grad_conv1: store_true
+
+model:
+  out_dim: 2048
+  base_model: "resnet50"
+  
+dataset:
+  s: 1
+  input_shape: (256,256,3)
+  num_workers: 0
+  valid_size: 0.1
+  crop_min: 0.08
+
+loss:
+  temperature: 0.5
+  use_cosine_similarity: True

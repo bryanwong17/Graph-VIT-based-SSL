@@ -1,0 +1,27 @@
+3 class classifier
+feature: ../../../feature_extractor/runs/simclr/runs/temp
+graphs: ../../../build_graphs/simclr/graphs_test/simclr_files
+
+hyperparameters:
+1. feature_extract.py
+- batch size: 32
+- epochs: 5
+- optimizer: Adam, lr: 1e-5, weight decay: 10e-6
+- output dim = 2048
+- base model = ResNet50(pretrained=True)
+- input shape = 256,256,3
+- loss temperature = 0.5
+- use_cosine_similarity = True
+
+2. main.py
+- epochs: 120
+- optimizer:Adam(lr=1e-3, weight_decay=5e-4)
+- batch size:8
+- GradScaler() with gradient accumulations=8
+- early stopping with patience=7 -> stop at epoch 24
+
+
+result: 94.67%
+[[49.  1.  5.]
+ [ 1. 49.  1.]
+ [ 0.  0. 44.]]
