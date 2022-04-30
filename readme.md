@@ -20,7 +20,7 @@
 
 - python build_graphs.py
 
-**Note:**
+**Notes:**
 
 - check arg parser for configuration
 - choose between loading SimCLR and MoCoV3 model in build_graphs.py (simply comment/uncomment it)
