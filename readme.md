@@ -14,7 +14,7 @@
 - if want to use Pytorch Lightning, run feature_extract_lightning.py instead (only MoCoV3 is ready)
 - model path: runs/(simclr or mocov3)/runs/(name of model)
 
-1. Build Graph
+2. Build Graph
 
 **How to run:**
 
@@ -26,7 +26,7 @@
 - choose between loading SimCLR and MoCoV3 model in build_graphs.py (simply comment/uncomment it)
 - graph path: ../build_graphs/(simclr or mocov3)/(name of model)/simclr_files/
 
-1. Training Graph VIT
+3. Training Graph VIT
 
 **How to run:**
 
@@ -37,4 +37,5 @@
 
 - when testing: train=False, test=True, val_set=(test data), resume=(graph VIT model path)
 - result path: results/(simclr or mocov3)/(name of result folder)/
-1. Visualization (not yet)
+
+4. Visualization (In Progress)
