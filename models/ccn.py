@@ -28,7 +28,7 @@ class CCNBlock(nn.Module):
         else:
             self.bias = None
 
-    def forward(self, x, adj, mask):
+    def forward(self, x):
         #y = torch.matmul(adj, x)
         y=0
         if self.add_self:

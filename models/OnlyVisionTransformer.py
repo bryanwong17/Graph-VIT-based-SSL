@@ -30,9 +30,9 @@ class Classifier(nn.Module):
         # self.relu1 = nn.ReLU()
 
     #As for what is mask, maybe refer to this paper https://yangliang.github.io/pdf/ijcai19_mask.pdf
-    def forward(self,node_feat,labels,adj,mask,is_print=False, graphcam_flag=False):
+    def forward(self,node_feat,labels,is_print=False, graphcam_flag=False):
         X=node_feat
-        X = self.conv1(X, adj, mask)
+        X = self.conv1(X)
         s = self.pool1(X) # linear transformation after convolution
         # s = self.relu1(s)
     
