@@ -7,6 +7,7 @@ from einops import rearrange
 from .layers import *
 import math
 
+#Please refer to this code https://github.com/hila-chefer/Transformer-Explainability/blob/23cac8e66c846454d59af4b1caac241626897077/baselines/ViT/ViT_new.py#L189-L191
 
 def _no_grad_trunc_normal_(tensor, mean, std, a, b):
     # Cut & paste from PyTorch official master until it's in a few official releases - RW
@@ -159,6 +160,10 @@ class VisionTransformer(nn.Module):
         self.num_classes = num_classes
         self.num_features = self.embed_dim = embed_dim  # num_features for consistency with other models (64)
 
+        #Only for ViT only 1000 actually should be n_patches +1 
+        self.pos_embedding = nn.Parameter(torch.randn(1, 2000, embed_dim))
+        self.dropout = nn.Dropout(drop_rate)
+
         # depth of encoder's block (3)
         self.blocks = nn.ModuleList([
             Block(
@@ -204,6 +209,13 @@ class VisionTransformer(nn.Module):
     def forward(self, x):
         # if x.requires_grad:
             # x.register_hook(self.save_inp_grad)     #comment it in train
+
+       
+        #Only for ViT only 
+        _, n, _ = x.shape
+        x += self.pos_embedding[:, :n]
+        x = self.dropout(x)       
+
 
         for blk in self.blocks:
             x = blk(x)
